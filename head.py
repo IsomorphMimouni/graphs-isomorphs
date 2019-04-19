@@ -44,5 +44,5 @@ import os
 con = sqlite3.connect('isom.db')
 cur = con.cursor()
 #*****************************************
-myfichier1="instances/no_conexte1.txt"	#deuxieme graphe ici
-myfichier2="instances/no_conexte2.txt"	#premier graphe ici
+myfichier1="instances/cfi-rigid-d3/cfi-rigid-d3-0180-01-2"	#deuxieme graphe ici
+myfichier2="instances/cfi-rigid-d3/cfi-rigid-d3-0180-01-1"	#premier graphe ici

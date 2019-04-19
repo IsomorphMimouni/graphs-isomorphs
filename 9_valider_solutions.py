@@ -59,20 +59,23 @@ for img in list_images:
 			break
 	#print("nouvelle valeur de err est: ",err)
 	if(err!=0):
-		print("La solution n est pas validé pour :", sommet,":",img)
+		print(id," La solution n est pas validé pour :", sommet,":",img)
 		corect_etat=True
 	else:
 		set_upd.add(img)
-		print("La solution est validé pour :", sommet,":",img)
+		print(id," La solution est validé pour :", sommet,":",img)
 #----------------------------------------------------------------------------------------------------------------------------
 if(len(set_upd)==0):
-	print("Les solutions ne sont pas validé pour sommet:", sommet)
+	print(id," Les solutions ne sont pas validé pour sommet:", sommet)
 	print(50*"Y")
 	#non dans fichier 'correction.txt'
 	fichier = open(filename, "w")
 	text_corct="non"
 	fichier.write(text_corct)
 	fichier.close()
+	#delete labels2
+	cur.execute("DELETE FROM labels2")
+	cur.execute("DELETE from sqlite_sequence where name='labels2'")# pour id=1
 	#delete arbre2
 	cur.execute("DELETE FROM arbre2")
 	cur.execute("DELETE from sqlite_sequence where name='arbre2'")# pour id=1
@@ -95,8 +98,9 @@ if(len(set_upd)==0):
 else:
 	#mise dans solutions:
 	list_upd=list(set_upd)
+	list_upd.sort()
 	upd=",".join(list_upd)
-	print("La solution est validé pour sommet:", sommet,":",upd)
+	print(id," La solution est validé pour sommet:", sommet,":",upd)
 	print(50*"w")
 	cur.execute("update solutions set images=?, fait='oui' where sommet=?", (upd, sommet))
 	con.commit()#sauvgarde

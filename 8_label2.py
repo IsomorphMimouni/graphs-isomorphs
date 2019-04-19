@@ -40,6 +40,7 @@ if(len(list_image)==0):
 else:
 	#insertion
 	cur.execute("insert into labels2 (sommet, etiquette) values (?, ?)", (sommet, label))
+	list_image.sort()
 	str_image=",".join(list_image)
 	cur.execute("insert into solutions (sommet, images, tete) values (?, ?, ?)", (sommet, str_image, tete_actuel))
 	con.commit()#sauvgarde
@@ -100,6 +101,7 @@ while(niv<max):
 		else:
 			#insertion
 			cur.execute("insert into labels2 (sommet, etiquette) values (?, ?)", (som, label))
+			list_image.sort()
 			str_image=",".join(list_image)
 			cur.execute("insert into solutions (sommet, images, tete) values (?, ?, ?)", (som, str_image, tete_actuel))
 			con.commit()#sauvgarde
@@ -154,6 +156,7 @@ if(etat):
 		else:
 			#insertion
 			cur.execute("insert into labels2 (sommet, etiquette) values (?, ?)", (som, label))
+			list_image.sort()
 			str_image=",".join(list_image)
 			cur.execute("insert into solutions (sommet, images, tete) values (?, ?, ?)", (som, str_image, tete_actuel))
 			con.commit()#sauvgarde
