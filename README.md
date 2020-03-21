@@ -7,8 +7,9 @@ programme isomorphes des graphes polynomial</br>
 GI_polynomial application</br>
 version: 1.3</br>
 /''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''</br>
-Open the file "head.py" and in line 47, enter the second graph. And in line 48 the first graph, then save your file.</br>
+Open the file "head.py" and in line 36, enter the first graph. And in line 37 the second graph , then save your file.</br>
 This program uses the file list of edges to present the graph (e a b).</br>
+On line 28, enter the first line number from the list as:e a b
 
 Run the "1_install.py" file that will create a sqlite (isom) to store the graph1 and graph2 files, and automatically activate the other python files.</br>
 
