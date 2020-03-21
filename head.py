@@ -27,22 +27,14 @@ Foundation Inc., 675 Mass Ave, Cambridge, MA 02139, Etats-Unis.
 **************************************************/
 """
 #*****************************************
-#vider la memoire1
-def clearall():
-	all = [var for var in globals() if var[0] != "_"]
-	for var in all:
-		del globals()[var]
-#vider la memoire
-clearall()
-#vider la memoire1
-import gc
-gc.collect()
-##########################################################################
 import sqlite3
 import os
 #*****************************************
-con = sqlite3.connect('isom.db')
+con = sqlite3.connect('isom_4140_04.db')
 cur = con.cursor()
 #*****************************************
-myfichier1="instances/cfi-rigid-d3/cfi-rigid-d3-0180-01-2"	#deuxieme graphe ici
-myfichier2="instances/cfi-rigid-d3/cfi-rigid-d3-0180-01-1"	#premier graphe ici
+
+myfichier1="instances/cfi-rigid-d3/cfi-rigid-d3-0180-01-1"
+myfichier2="instances/cfi-rigid-d3/cfi-rigid-d3-0180-01-2"
+# si le fichier commence par des lignes descriptions il faut donner le numero de arrets...defaut lignedebut=1
+lignedebut=1

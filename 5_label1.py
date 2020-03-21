@@ -82,7 +82,6 @@ for tete in list_tete:
 			#insertion
 			cur.execute("insert into labels1 (sommet, etiquette) values (?, ?)", (som, label))
 			con.commit()#sauvgarde
-			print(30*"*")
 		niv=niv+1
 		list_sommets=list_sommets_b
 	#print("niv apres while: ", niv)
@@ -127,5 +126,5 @@ for tete in list_tete:
 con.close()#fermer data base
 # passer a 6_arbres2.py
 cmd = '6_arbres2.py'
-os.system("cls")#effacer l'ecran
+os.system("cls")#effacer l'ecran 
 os.startfile(cmd)

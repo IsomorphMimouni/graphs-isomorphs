@@ -41,6 +41,8 @@ else:
 	#insertion
 	cur.execute("insert into labels2 (sommet, etiquette) values (?, ?)", (sommet, label))
 	list_image.sort()
+	# convert chaque element de list_image en string @@@important@@@
+	list_image = set(map(str, list_image))
 	str_image=",".join(list_image)
 	cur.execute("insert into solutions (sommet, images, tete) values (?, ?, ?)", (sommet, str_image, tete_actuel))
 	con.commit()#sauvgarde
@@ -102,12 +104,13 @@ while(niv<max):
 			#insertion
 			cur.execute("insert into labels2 (sommet, etiquette) values (?, ?)", (som, label))
 			list_image.sort()
+			# convert chaque element de list_image en string @@@important@@@
+			list_image = set(map(str, list_image))
 			str_image=",".join(list_image)
 			cur.execute("insert into solutions (sommet, images, tete) values (?, ?, ?)", (som, str_image, tete_actuel))
 			con.commit()#sauvgarde
 		if(etat==False):
 			break
-		print(30*"*")
 	niv=niv+1
 	list_sommets=list_sommets_b
 #niveau dernier
@@ -157,10 +160,11 @@ if(etat):
 			#insertion
 			cur.execute("insert into labels2 (sommet, etiquette) values (?, ?)", (som, label))
 			list_image.sort()
+			# convert chaque element de list_image en string @@@important@@@
+			list_image = set(map(str, list_image))
 			str_image=",".join(list_image)
 			cur.execute("insert into solutions (sommet, images, tete) values (?, ?, ?)", (som, str_image, tete_actuel))
 			con.commit()#sauvgarde
-		print(30*"*")
 if(etat):
 	# passer a 9_valider_solutions.py
 	cmd = '9_valider_solutions.py' # 9_valider_solutions.py		9_valider_solutions.py

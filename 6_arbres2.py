@@ -32,6 +32,8 @@ con.commit()#sauvgarde
 list_adjacents=adjacents.split(',')
 #print("list_adjacents: ",list_adjacents)
 set_adjacents=set(list_adjacents)
+# convert chaque element de set_adjacents en integer @@@important@@@
+set_adjacents = set(map(int, set_adjacents))
 set_graphe=set_graphe - set_adjacents
 #print("set_adjacents: ",set_adjacents)
 #print("set_graphe(apres niv1): ",set_graphe)
@@ -52,6 +54,8 @@ while(taille>0):
 		list_adjacents_k=adjacents_k.split(',')
 		#print("list_adjacents_k: ",list_adjacents_k)
 		set_adjacents_k=set(list_adjacents_k)
+		# convert chaque element de set_adjacents_k en integer @@@important@@@
+		set_adjacents_k = set(map(int, set_adjacents_k))
 		set_adjacents_k=set_adjacents_k & set_graphe
 		#print("set_adjacents_k(&): ",set_adjacents_k)
 		set_groupe=set_groupe | set_adjacents_k
@@ -69,6 +73,8 @@ while(taille>0):
 	else:
 		list_groupe=list(set_groupe)
 		list_groupe.sort()
+		# convert chaque element de list_groupe en string @@@important@@@
+		list_groupe = set(map(str, list_groupe))
 		list_adjacents=list_groupe
 		groupe=",".join(list_groupe)
 		cur.execute("insert into arbre2 (niveau, sommets, tete) values (?, ?, ?)", (niv, groupe, tete))
@@ -94,6 +100,8 @@ for t in lignes:
 		list_tete.append(tete_t)
 if(len(list_tete)>0):
 	#list_tete dans fichier de texte
+	# convert chaque element de list_tete en string @@@important@@@
+	list_tete = set(map(str, list_tete))
 	tete_ch=",".join(list_tete)
 	fichier = open("tetes.txt", "w")
 	fichier.write(tete_ch)

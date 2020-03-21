@@ -5,57 +5,49 @@ os=head.os
 #fichier graphe2
 print("3_adjacents2.py")
 print(30*".")
-fichier = open(head.myfichier2, "r")
+lignedebut=head.lignedebut
 set_graphe=set()
-for line in fichier:
-	arete=line.split(' ')#explode php
-	a=arete[1]
-	b=arete[2]
-	b=b.strip()
-	set_graphe.add(a)
-	set_graphe.add(b)
-	#insert aretes
-	cur.execute("insert into aretes2 (a, b) values (?, ?)", (a, b))
+with open(head.myfichier2, 'r') as f:
+	for ind, line in enumerate(f):
+		if ind >= lignedebut-1:
+			arete=line.split(' ')#explode php
+			a=arete[1]
+			b=arete[2]
+			b=b.strip()
+			a=int(a)
+			b=int(b)
+			set_graphe.add(a)
+			set_graphe.add(b)
+			#insert aretes
+			cur.execute("insert into aretes2 (a, b) values (?, ?)", (a, b))
 # Sauvgarde
 con.commit()
-#fermer le fichier
-fichier.close()
 #print(set_graphe)
 #------------------------------------------
 i=1
 list_graphe=list(set_graphe)
 list_graphe.sort()
 for k in list_graphe:
-	print(i,":",k)
 	# les adjacents avant de sommet k: b=k
 	cur.execute("select a from aretes2 where b=?", (k,))
 	avant = cur.fetchall()
-	avant=str(avant).strip("[]")
-	avant=str(avant).strip("()")
-	avant=str(avant).strip(",")
-	avant=str(avant).split("',), ('")
-	avant=','.join(avant)
-	avant=avant.strip("'")
-	#print("avant(join): ",avant)
+	list_avant=list()
+	for av in avant:
+		str_av=str(av[0])
+		list_avant.append(str_av)
+	avant=','.join(list_avant)
 	# les adjacents apres de sommet k: a=k
 	cur.execute("select b from aretes2 where a=?", (k,))
 	apres = cur.fetchall()
-	apres=str(apres).strip("[]")
-	apres=str(apres).strip("()")
-	apres=str(apres).strip(",")
-	apres=str(apres).split("',), ('")
-	apres=','.join(apres)
-	apres=apres.strip("'")
-	#print("apres(join): ",apres)
-	#insert graphe2 table
-	adj=avant+','+apres
-	adj=str(adj).strip(',')
-	#print("adj: ",adj)
-	list_adj=adj.split(',')
-	set_adj=set(list_adj)
-	list_adj=list(set_adj)
-	list_adj.sort()
-	adj=','.join(list_adj)
+	list_apres=list()
+	for ap in apres:
+		str_ap=str(ap[0])
+		list_apres.append(str_ap)
+	apres=','.join(list_apres)
+	adj=avant+","+apres
+	adj=adj.strip(",")
+	k=int(k)
+	print(k,":",adj)
 	cur.execute("insert into graphe2 (sommet, adjacents) values (?, ?)", (k, adj))
 	i=i+1
 # Sauvgarde
@@ -68,5 +60,6 @@ cur.execute("delete from sqlite_sequence where name='aretes2'")# pour id=1
 con.commit()
 con.close()#fermer data base
 #-------------------------------------------------------------------------------------------------------------------------
+# passer a 4_arbres1.py
 cmd = '4_arbres1.py'
 os.startfile(cmd)

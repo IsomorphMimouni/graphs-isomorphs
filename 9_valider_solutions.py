@@ -32,9 +32,7 @@ set_adjacents1=set(list_adjacents1)
 set_upd=set()#pour les images valider
 corect_etat=False
 for img in list_images:
-	print(20*"*")
-	print("tester ",sommet," avec ",img)
-	print(20*"*")
+	#print("tester ",sommet," avec ",img)
 	err=0
 	#print("valeur initial de err est: ",err)
 	#adjacents2
@@ -59,11 +57,11 @@ for img in list_images:
 			break
 	#print("nouvelle valeur de err est: ",err)
 	if(err!=0):
-		print(id," La solution n est pas validé pour :", sommet,":",img)
+		print(id,":", sommet,"#",img)
 		corect_etat=True
 	else:
 		set_upd.add(img)
-		print(id," La solution est validé pour :", sommet,":",img)
+		print("\t\t",id,":", sommet,":",img)
 #----------------------------------------------------------------------------------------------------------------------------
 if(len(set_upd)==0):
 	print(id," Les solutions ne sont pas validé pour sommet:", sommet)
