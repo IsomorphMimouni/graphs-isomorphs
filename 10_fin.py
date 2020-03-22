@@ -62,4 +62,5 @@ fichier = open(filename, "w")
 fichier.write(text_corct)
 fichier.close()
 con.close()#fermer data base
-#eteindre pc:#os.system ('shutdown /s /t 10')
+#eteindre pc:
+#os.system ('shutdown /s /t 10')
